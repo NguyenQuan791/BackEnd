@@ -106,6 +106,7 @@
 <body>
     <center>
     <h1>Sách nói Monkey - Thông tin</h1>
+    <h1>Sách nói Monkey - Thông tin</h1>
     </center>
     <a href="{{url('/book/create')}}"><button style="width:200px;height:50px;margin-bottom:10px; background-color: green; color:white;">Thêm sách</button></a>
     <table style="width:100%">
