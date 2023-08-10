@@ -14,7 +14,6 @@ class BookController extends Controller
     public function index()
     {
         $book=Book::all();
-        // dd($book);
         return view('book.index',compact('book'));
         //
     }
@@ -34,10 +33,12 @@ class BookController extends Controller
     {
         $input=$request->all();
         // unset($input['_token']);
-        $input['bookCover']='...';
+        if(empty($input['bookCover'])){
+            $input['bookCover']='...';
+        }
         Book::create($input);
         $mess='1';
-        return redirect('book?mess='.$mess);
+        return redirect('book');
     }
 
     /**
@@ -68,12 +69,12 @@ class BookController extends Controller
     {
         $book=Book::find($id);
         $input=$request->all();
-        // unset($input['_token']);
-        // dd($input);
-        // $input['bookCover']='...';
+        if(empty($input['bookCover'])){
+            $input['bookCover']='...';
+        }
         $book->update($input);
         $mess='1';
-        return redirect('book?mess='.$mess);
+        return redirect('book');
     }
 
     /**
@@ -85,6 +86,6 @@ class BookController extends Controller
 
         $book->delete();
         $mess='1';
-        return redirect('book?mess='.$mess);
+        return redirect('book');
     }
 }
