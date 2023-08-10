@@ -17,4 +17,6 @@ class Page extends Model
     {
         return $this->hasMany(Content::class,'pageId','id');
     }
+
+    protected $hidden = ['id','created_at','updated_at'];
 }

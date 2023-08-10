@@ -13,4 +13,6 @@ class Sound extends Model
         'soundName',
         'sound',
     ];
+
+    protected $hidden = ['id','created_at','updated_at'];
 }

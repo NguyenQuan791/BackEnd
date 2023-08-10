@@ -21,4 +21,6 @@ class Book extends Model
         return $this->hasMany(Page::class,'bookId','id');
     }
 
+    protected $hidden = ['id','created_at','updated_at'];
+
 }

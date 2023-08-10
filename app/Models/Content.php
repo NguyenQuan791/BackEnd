@@ -23,4 +23,6 @@ class Content extends Model
     {
         return $this->hasOne(Sound::class,'id','soundId');
     }
+
+    protected $hidden = ['id','created_at','updated_at'];
 }
