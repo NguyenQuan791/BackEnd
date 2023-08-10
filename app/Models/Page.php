@@ -10,6 +10,7 @@ class Page extends Model
     use HasFactory;
     protected $table="bookpage";
     protected $fillable=[
+        'bookId',
         'pageNumber',
         'backgroud',
     ];
