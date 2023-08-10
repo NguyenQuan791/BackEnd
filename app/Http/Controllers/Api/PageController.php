@@ -1,25 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Page;
 
 class PageController extends Controller
 {
-    /**
+    //
+     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $page=Page::all();
+        return $page;
     }
 
     /**
@@ -27,7 +23,11 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input=$request->all();
+        // unset($input['_token']);
+        Page::create($input);
+        $mess='1';
+        return $mess;
     }
 
     /**
@@ -35,15 +35,9 @@ class PageController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        $page=Page::find($id);
+        $page['content']=$page->content;
+        return $page;
     }
 
     /**
@@ -51,7 +45,11 @@ class PageController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $page=Page::find($id);
+        $input=$request->all();
+        $page->update($input);
+        $mess='1';
+        return $mess;
     }
 
     /**
@@ -59,6 +57,10 @@ class PageController extends Controller
      */
     public function destroy(string $id)
     {
+        $page = Page::findOrFail($id);
+        $page->delete();
+        $mess='1';
+        return $mess;
         //
     }
 }

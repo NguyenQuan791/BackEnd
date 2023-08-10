@@ -13,4 +13,8 @@ class Page extends Model
         'pageNumber',
         'backgroud',
     ];
+    public function content()
+    {
+        return $this->hasMany(Content::class,'pageId','id');
+    }
 }

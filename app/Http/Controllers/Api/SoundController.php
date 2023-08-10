@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Sound;
 
-use App\Models\Content;
-
-class ContentController extends Controller
+class SoundController extends Controller
 {
-    /**
+    //
+     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $conten=Content::all();
-        return $conten;
+        $sound=Sound::all();
+        return $sound;
     }
 
     /**
@@ -24,7 +24,8 @@ class ContentController extends Controller
     public function store(Request $request)
     {
         $input=$request->all();
-        Content::create($input);
+        // unset($input['_token']);
+        Sound::create($input);
         $mess='1';
         return $mess;
     }
@@ -35,9 +36,8 @@ class ContentController extends Controller
     public function show(string $id)
     {
 
-        $content=Content::find($id);
-        $conten['sound']=$content->sound;
-        return $content;
+        $sound=Sound::find($id);
+        return $sound;
     }
 
     /**
@@ -45,9 +45,9 @@ class ContentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $content=Content::find($id);
+        $sound=Sound::find($id);
         $input=$request->all();
-        $content->update($input);
+        $sound->update($input);
         $mess='1';
         return $mess;
     }
@@ -57,10 +57,10 @@ class ContentController extends Controller
      */
     public function destroy(string $id)
     {
-        $content = Content::findOrFail($id);
-
-        $content->delete();
+        $sound = Sound::findOrFail($id);
+        $sound->delete();
         $mess='1';
         return $mess;
+        //
     }
 }
