@@ -14,8 +14,11 @@ class ContentController extends Controller
      */
     public function index()
     {
-        $conten=Content::all();
-        return $conten;
+        $content=Content::all();
+        foreach($content as $co){
+            $co['sound']=$co->sound;
+        }
+        return $content;
     }
 
     /**
@@ -34,7 +37,7 @@ class ContentController extends Controller
      */
     public function show(string $id)
     {
-
+        
         $content=Content::find($id);
         $conten['sound']=$content->sound;
         return $content;
