@@ -15,6 +15,9 @@ class PageController extends Controller
     public function index()
     {
         $page=Page::all();
+        foreach($page as $pa){
+            $pa['content']=$pa->content;
+        }
         return $page;
     }
 

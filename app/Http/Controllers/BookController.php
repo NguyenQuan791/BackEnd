@@ -48,7 +48,6 @@ class BookController extends Controller
     {
         $book=Book::find($id);
         $page=$book->pages;
-        // dd($page);
         return view('book.show',compact('book','page'));
     }
 
