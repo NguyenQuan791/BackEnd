@@ -4,17 +4,23 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Page;
+use App\Repositories\PageRepository\PageRepositoryInterface;
 
 class PageController extends Controller
 {
+    protected $pageRepo;
+
+    public function __construct(PageRepositoryInterface $pageRepo)
+    {
+        $this->pageRepo=$pageRepo;
+    }
     //
      /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $page=Page::all();
+        $page=$this->pageRepo->index();
         foreach($page as $pa){
             $pa['content']=$pa->content;
         }
@@ -28,7 +34,7 @@ class PageController extends Controller
     {
         $input=$request->all();
         // unset($input['_token']);
-        Page::create($input);
+        $this->pageRepo->store($input);
         $mess='1';
         return $mess;
     }
@@ -38,7 +44,7 @@ class PageController extends Controller
      */
     public function show(string $id)
     {
-        $page=Page::find($id);
+        $page=$this->pageRepo->show($id);
         $page['content']=$page->content;
         return $page;
     }
@@ -48,9 +54,8 @@ class PageController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $page=Page::find($id);
         $input=$request->all();
-        $page->update($input);
+        $this->pageRepo->update($input,$id);
         $mess='1';
         return $mess;
     }
@@ -60,8 +65,7 @@ class PageController extends Controller
      */
     public function destroy(string $id)
     {
-        $page = Page::findOrFail($id);
-        $page->delete();
+        $this->pageRepo->destroy($id);
         $mess='1';
         return $mess;
         //
