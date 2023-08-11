@@ -42,7 +42,6 @@ class SoundController extends Controller
     public function show(string $id)
     {
         $Sound=$this->soundRepo->show($id);
-        $Sound['content']=$Sound->content;
         return $Sound;
     }
 
