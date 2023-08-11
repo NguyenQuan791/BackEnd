@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Models\Book;
+use App\Repositories\BookRepository\BookRepositoryInterface;
 
 class BookController extends Controller
 {
+    protected $bookRepo;
+
+    public function __construct(BookRepositoryInterface $bookRepo)
+    {
+        $this->bookRepo = $bookRepo;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $book=Book::all();
+        $book=$this->bookRepo->index();
         return view('book.index',compact('book'));
         //
     }
@@ -36,55 +41,50 @@ class BookController extends Controller
         if(empty($input['bookCover'])){
             $input['bookCover']='...';
         }
-        Book::create($input);
-        $mess='1';
+        $this->bookRepo->store($input);
         return redirect('book');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // /**
+    //  * Display the specified resource.
+    //  */
     public function show(string $id)
     {
-        $book=Book::find($id);
+        $book=$this->bookRepo->show($id);
         $page=$book->pages;
         return view('book.show',compact('book','page'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  */
     public function edit(string $id)
     {
-        $book=Book::find($id);
+        $book=$this->bookRepo->show($id);
         return view('book.edit',compact('book'));
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // /**
+    //  * Update the specified resource in storage.
+    //  */
     public function update(Request $request, string $id)
     {
-        $book=Book::find($id);
         $input=$request->all();
         if(empty($input['bookCover'])){
             $input['bookCover']='...';
         }
-        $book->update($input);
+        $book=$this->bookRepo->update($input, $id);
         $mess='1';
         return redirect('book');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // /**
+    //  * Remove the specified resource from storage.
+    //  */
     public function destroy(string $id)
     {
-        $book = Book::findOrFail($id);
-
-        $book->delete();
-        $mess='1';
+        $this->bookRepo->destroy($id);
         return redirect('book');
     }
 }
