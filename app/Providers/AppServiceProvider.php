@@ -23,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\PageRepository\PageRepositoryInterface::class,
             \App\Repositories\PageRepository\PageRepository::class
         ); 
+        $this->app->singleton(
+            \App\Repositories\SoundRepository\SoundRepositoryInterface::class,
+            \App\Repositories\SoundRepository\SoundRepository::class
+        ); 
         //
     }
 

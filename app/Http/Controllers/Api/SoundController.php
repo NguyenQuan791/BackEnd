@@ -4,18 +4,24 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Sound;
+use App\Repositories\SoundRepository\SoundRepositoryInterface;
 
 class SoundController extends Controller
 {
+    protected $soundRepo;
+
+    public function __construct(SoundRepositoryInterface $soundRepo)
+    {
+        $this->soundRepo=$soundRepo;
+    }
     //
      /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $sound=Sound::all();
-        return $sound;
+        $Sound=$this->soundRepo->index();
+        return $Sound;
     }
 
     /**
@@ -25,7 +31,7 @@ class SoundController extends Controller
     {
         $input=$request->all();
         // unset($input['_token']);
-        Sound::create($input);
+        $this->soundRepo->store($input);
         $mess='1';
         return $mess;
     }
@@ -35,9 +41,9 @@ class SoundController extends Controller
      */
     public function show(string $id)
     {
-
-        $sound=Sound::find($id);
-        return $sound;
+        $Sound=$this->soundRepo->show($id);
+        $Sound['content']=$Sound->content;
+        return $Sound;
     }
 
     /**
@@ -45,9 +51,8 @@ class SoundController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $sound=Sound::find($id);
         $input=$request->all();
-        $sound->update($input);
+        $this->soundRepo->update($input,$id);
         $mess='1';
         return $mess;
     }
@@ -57,8 +62,7 @@ class SoundController extends Controller
      */
     public function destroy(string $id)
     {
-        $sound = Sound::findOrFail($id);
-        $sound->delete();
+        $this->soundRepo->destroy($id);
         $mess='1';
         return $mess;
         //
