@@ -19,7 +19,7 @@ class BookTableSeeder extends Seeder
 
         $books = [
             ["Let's Make a Salad Bown!",'Hilary Tran','Nathan Pham','Lg4oU6Aq4DxsWdwLByyCax1672904703767_trong.png'],
-            ['Learn English So Not Fun'],['Quan Nguyen ANh'],['Quan Nguyen'],['m7ONzmMXmQkaJ8mj3jrSdI1672904703799_trong.png'],
+            ['Learn English So Not Fun','Quan Nguyen ANh','Quan Nguyen','m7ONzmMXmQkaJ8mj3jrSdI1672904703799_trong.png'],
             ['Alphabet','Hello Al','Hello Al','sK2dF8gy6Ou6nAWXbfmQgL1672904703791_trong.png'],
             ['Code So Fun','Test Case','Case Test','ZWSAJtLuPueiEa9JpFPyqy1672904703749_trong.png'],
             ['Ảo ma Canada','Anh Yeu','Yeu Anh','...']
