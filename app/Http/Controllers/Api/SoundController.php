@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\sound_validate;
 use Illuminate\Http\Request;
 use App\Repositories\SoundRepository\SoundRepositoryInterface;
 
@@ -27,7 +28,7 @@ class SoundController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(sound_validate $request)
     {
         $input=$request->all();
         // unset($input['_token']);
@@ -48,7 +49,7 @@ class SoundController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(sound_validate $request, string $id)
     {
         $input=$request->all();
         $this->soundRepo->update($input,$id);
