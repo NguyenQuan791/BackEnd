@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\page_validate;
 use Illuminate\Http\Request;
 use App\Repositories\PageRepository\PageRepositoryInterface;
 
@@ -30,7 +31,7 @@ class PageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(page_validate $request)
     {
         $input=$request->all();
         // unset($input['_token']);
@@ -52,7 +53,7 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(page_validate $request, string $id)
     {
         $input=$request->all();
         $this->pageRepo->update($input,$id);
