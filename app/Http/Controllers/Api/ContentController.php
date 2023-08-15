@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\content_validate;
 use Illuminate\Http\Request;
 use App\Repositories\ContentRepository\ContentrepositoryInterface;
 
@@ -29,7 +30,7 @@ class ContentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(content_validate $request)
     {
         $input=$request->all();
         $this->contentRepo->store($input);
@@ -51,7 +52,7 @@ class ContentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(content_validate $request, string $id)
     {
         $input=$request->all();
         $this->contentRepo->update($input, $id);
