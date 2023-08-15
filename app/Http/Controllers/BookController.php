@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Repositories\BookRepository\BookRepositoryInterface;
+use App\Http\Requests\book_validate;
 
 class BookController extends Controller
 {
@@ -34,7 +34,7 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(book_validate $request)
     {
         $input=$request->all();
         // unset($input['_token']);
@@ -68,7 +68,7 @@ class BookController extends Controller
     // /**
     //  * Update the specified resource in storage.
     //  */
-    public function update(Request $request, string $id)
+    public function update(book_validate $request, string $id)
     {
         $input=$request->all();
         if(empty($input['bookCover'])){

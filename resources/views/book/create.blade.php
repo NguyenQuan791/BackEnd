@@ -52,7 +52,7 @@
         .col-75 {
             float: left;
             width: 75%;
-            margin-top: 6px;
+            margin-top: 16px;
         }
 
         /* Clear floats after the columns */
@@ -72,7 +72,15 @@
                 margin-top: 0;
             }
         }
-        form{
+
+        .is-danger{
+            color: red;
+            font-size: 14px;
+            /* position: absolute; */
+            margin: 0px;
+        }
+
+        form {
             width: 1200px;
             border: 1px solid black;
             margin: auto;
@@ -83,9 +91,8 @@
 </head>
 
 <body>
-
     <center>
-    <h1>Sách nói Monkey - Thêm thông tin</h1>
+        <h1>Sách nói Monkey - Thêm thông tin</h1>
     </center>
     <form action="{{url('book')}}" method="post">
         @csrf
@@ -94,7 +101,10 @@
                 <label for="fname">Tên sách</label>
             </div>
             <div class="col-75">
-                <input type="text" id="fname" name="bookName" placeholder="Nhập tên sách..">
+                <input type="text" name="bookName" placeholder="Nhập tên sách..">
+                @if ($errors->has('bookName'))
+                    <p class="help is-danger">{{ $errors->first('bookName') }}</p>
+                @endif
             </div>
         </div>
         <div class="row">
@@ -102,7 +112,10 @@
                 <label for="lname">Tác giả</label>
             </div>
             <div class="col-75">
-                <input type="text" id="lname" name="writer" placeholder="Nhập tên tác giả..">
+                <input type="text" name="writer" placeholder="Nhập tên tác giả..">
+                @if ($errors->has('writer'))
+                    <p class="help is-danger">{{ $errors->first('writer') }}</p>
+                @endif
             </div>
         </div>
         <div class="row">
@@ -110,7 +123,10 @@
                 <label for="country">Minh họa</label>
             </div>
             <div class="col-75">
-                <input type="text" id="lname" name="illstrator" placeholder="Nhập tên họa sĩ..">
+                <input type="text" name="illstrator" placeholder="Nhập tên họa sĩ..">
+                @if ($errors->has('illstrator'))
+                    <p class="help is-danger">{{ $errors->first('illstrator') }}</p>
+                @endif
             </div>
         </div>
         <div class="row">
@@ -119,6 +135,9 @@
             </div>
             <div class="col-75">
                 <input type="file" name="bookCover" id="">
+                @if ($errors->has('bookCover'))
+                    <p class="help is-danger">{{ $errors->first('bookCover') }}</p>
+                @endif
             </div>
         </div>
         <div class="row">
