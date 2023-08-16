@@ -12,6 +12,8 @@ class Content extends Model
     protected $fillable=[
         'pageId',
         'soundId',
+        "imageId",
+        "animationId",
         'textContent',
         'locationX',
         'locationY',

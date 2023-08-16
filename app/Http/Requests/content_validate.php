@@ -28,6 +28,7 @@ class content_validate extends FormRequest
     {
         return [
             'pageId'=>'bail|required|integer|min:1',
+            
             'locationX'=>'bail|required|numeric',
             'locationY'=>'bail|required|numeric',
             'width'=>'bail|required|numeric|min:1',

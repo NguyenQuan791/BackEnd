@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\content_validate;
-use Illuminate\Http\Request;
-use App\Repositories\ContentRepository\ContentrepositoryInterface;
+use  App\Repositories\ContentRepository\ContentRepositoryInterface;
 
 class ContentController extends Controller
 {
     protected $contentRepo;
 
-    public function __construct(ContentrepositoryInterface $contentRepo)
+    public function __construct(ContentRepositoryInterface $contentRepo)
     {
         $this->contentRepo=$contentRepo;
     }
