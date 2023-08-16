@@ -101,7 +101,7 @@
                 <label for="fname">Tên sách</label>
             </div>
             <div class="col-75">
-                <input type="text" name="bookName" placeholder="Nhập tên sách..">
+                <input type="text" name="bookName" placeholder="Nhập tên sách.." value="{{ old('bookName') }}">
                 @if ($errors->has('bookName'))
                     <p class="help is-danger">{{ $errors->first('bookName') }}</p>
                 @endif
@@ -112,7 +112,7 @@
                 <label for="lname">Tác giả</label>
             </div>
             <div class="col-75">
-                <input type="text" name="writer" placeholder="Nhập tên tác giả..">
+                <input type="text" name="writer" placeholder="Nhập tên tác giả.." value="{{ old('writer') }}">
                 @if ($errors->has('writer'))
                     <p class="help is-danger">{{ $errors->first('writer') }}</p>
                 @endif
@@ -123,7 +123,7 @@
                 <label for="country">Minh họa</label>
             </div>
             <div class="col-75">
-                <input type="text" name="illstrator" placeholder="Nhập tên họa sĩ..">
+                <input type="text" name="illstrator" placeholder="Nhập tên họa sĩ.." value="{{ old('illstrator') }}">
                 @if ($errors->has('illstrator'))
                     <p class="help is-danger">{{ $errors->first('illstrator') }}</p>
                 @endif
@@ -134,7 +134,7 @@
                 <label for="subject">Ảnh bìa</label>
             </div>
             <div class="col-75">
-                <input type="file" name="bookCover" id="">
+                <input type="file" name="bookCover" id="" value="{{ old('bookCover') }}">
                 @if ($errors->has('bookCover'))
                     <p class="help is-danger">{{ $errors->first('bookCover') }}</p>
                 @endif
