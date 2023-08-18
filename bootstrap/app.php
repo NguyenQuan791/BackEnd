@@ -51,8 +51,8 @@ $app->singleton(
 | from the actual running of the application and sending responses.
 |
 */
-$app->configureMonologUsing(function ($monolog) {
-    $monolog->pushHandler(...);
-});
+// $app->configureMonologUsing(function ($monolog) {
+//     $monolog->pushHandler(...);
+// });
 
 return $app;
