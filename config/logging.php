@@ -36,6 +36,14 @@ return [
         'trace' => false,
     ],
 
+    'auth_history' => [
+        'driver' => 'daily',
+        'path' => storage_path('logs/auth_history.log'),
+        'level' => 'debug',
+        'days' => 0,
+        'permission' => 777,
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Log Channels
